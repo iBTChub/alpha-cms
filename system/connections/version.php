@@ -30,10 +30,22 @@ if (get('base') != 'panel'){
   
   }
   
-  function version($data){
-    $version = db::get_string("SELECT * FROM `PANEL_THEMES` WHERE `DIR` = ? AND `ACT` >= '1' LIMIT 1", [esc(VERSION)]);  
-    return tabs($version[$data]);
+function version($data){
+  // Выполняем SQL-запрос
+  $version = db::get_string("SELECT * FROM `PANEL_THEMES` WHERE `DIR` = ? AND `ACT` >= '1' LIMIT 1", [esc(VERSION)]);
+  // Проверяем, что результат не null и что это массив
+  if ($version === null || !is_array($version)) {
+    // Возвращаем null или другое значение по умолчанию
+    return null;
   }
+  // Проверяем, что ключ $data существует в массиве
+  if (!array_key_exists($data, $version)) {
+    // Возвращаем null или другое значение по умолчанию
+    return null;
+  }
+  // Возвращаем значение по ключу
+  return tabs($version[$data]);
+}
   
   if (!is_dir(ROOT.'/style/version/'.version('DIR').'/') && url_request_validate('/install') == false){
     
