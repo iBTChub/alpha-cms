@@ -24,16 +24,20 @@ function _error($text) {
 ---------------------------------------------
 */
   
-$dir_func_data = opendir(ROOT.'/system/functions');
+$dir_func_data = opendir(ROOT.'/platform/functions');
 
 while ($dir_func = readdir($dir_func_data)){
-  
   if (preg_match('#\.php$#i',$dir_func)){
-    
-    require (ROOT.'/system/functions/'.$dir_func);
-  
+    require_once (ROOT.'/platform/functions/'.$dir_func);
   }
+}
 
+$dir_func_data2 = opendir(ROOT.'/system/functions');
+
+while ($dir_func = readdir($dir_func_data2)){
+  if (preg_match('#\.php$#i',$dir_func)){
+    require_once (ROOT.'/system/functions/'.$dir_func);
+  }
 }
 
 /*

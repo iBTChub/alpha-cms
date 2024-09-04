@@ -112,19 +112,6 @@ function is_active_module($data, $type = 0){
   return true;
 
 }
-  
-/*
---------------------------------------------
-Абсолютный текст с фильтрацией без бб-кодов,
-смайлов и т.п.
---------------------------------------------
-*/
-  
-function tabs($text){
-  
-  return stripslashes(htmlspecialchars($text, ENT_QUOTES, 'UTF-8'));
-
-}
 
 /*
 --------------------------------
