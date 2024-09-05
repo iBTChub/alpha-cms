@@ -211,7 +211,7 @@ class html{
     // $text - текст поля
     // $class - стиль поля
     // $rows - высота поля
-    // $bb - показ панели добавления bb кодов. Если 1 - общий показ, если 0 - скрытие, если 2 - показ панели bb-кодов и смайлов без файлов
+    // $bb - показ панели добавления bb кодов. Если 1 - общий показ, если 0 - скрытие, если 2 - показ панели bb-кодов и смайлов без файлов.
 
     // Проверка, чтобы $text не был null
     $text = $text ?? '';
@@ -222,8 +222,10 @@ class html{
     
     ?>
     <span style='position: relative'>
-    <textarea id='count_char' onkeyup="countLetters()" name='<?=$name?>' rows='<?=$rows?>' placeholder='<?=lg($placeholder)?>' class='<?=$class?>'><?=$text?></textarea>
-    <small style='position: absolute; bottom: 10px; right: 15px; color: #566B75'><span id='countLetters'><?=mb_strlen(str_replace("\r", "", $text), 'UTF-8')?></span></small>
+      <textarea id='count_char' onkeyup="countLetters()" name='<?=$name?>' rows='<?=$rows?>' placeholder='<?=lg($placeholder)?>' class='<?=$class?>'><?=$text?></textarea>
+      <small style='position: absolute; bottom: 10px; right: 15px; color: #566B75'>
+        <span id='countLetters'><?=mb_strlen(str_replace("\r", "", $text), 'UTF-8')?></span>
+      </small>
     </span>
     <?
       
