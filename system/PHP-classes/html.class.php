@@ -201,26 +201,23 @@ class html{
       
   }
   
-  /*
-  -----------------
-  Окно ввода текста 
-  -----------------
-  */
-  
+
+  # Окно ввода текста 
   static function textarea($text = null, $name = null, $placeholder = null, $title = null, $class = 'form-control-textarea', $rows = 5, $bb = 1) {
     
-    //$placeholder - описание внутри поля
-    //$name - имя для передачи в POST
-    //$title - описание поля
-    //$text - текст поля
-    //$class - стиль поля
-    //$rows - высота поля
-    //$bb - показ панели добавления bb кодов. Если 1 - общий показ, если 0 - скрытие, если 2 - показ панели bb-кодов и смайлов без файлов
-    
-    if (str($title) > 0){
-      
-      echo lg($title)."<br />";
-      
+    // $placeholder - описание внутри поля
+    // $name - имя для передачи в POST
+    // $title - описание поля
+    // $text - текст поля
+    // $class - стиль поля
+    // $rows - высота поля
+    // $bb - показ панели добавления bb кодов. Если 1 - общий показ, если 0 - скрытие, если 2 - показ панели bb-кодов и смайлов без файлов
+
+    // Проверка, чтобы $text не был null
+    $text = $text ?? '';
+
+    if (str($title) > 0) {
+        echo lg($title) . "<br />";
     }
     
     ?>
@@ -230,9 +227,8 @@ class html{
     </span>
     <?
       
-    require (ROOT.'/system/connections/bb_textarea.php');
-    
-  }
+    require (ROOT . '/system/connections/bb_textarea.php');
+}
   
   /*
   -----------------
