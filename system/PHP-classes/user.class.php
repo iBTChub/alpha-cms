@@ -1,61 +1,53 @@
 <?php
   
-/*
---------------------------------------------
-Класс для работы с пользовательскими данными
---------------------------------------------
-*/
-  
+
+# Класс для работы с пользовательскими данными
 class user {
   
-  public static function avatar($ID, $size = 80, $online = 0, $border = 0){
+  public static function avatar($ID, $size = 80, $online = 0, $border = 0) {
+    // $ID - идентификатор пользователя
+    // $size - размер аватара
+    // $online - вывод значка онлайн
+    // $border - белая обводка аватара для отступа от границ (0 - выкл, 1 - вкл)
     
-    //$ID - идентификатор пользователя
-    //$size - размер аватара
-    //$online - вывод значка онлайн
-    //$border - белая обводка аватара для отступа от границ (0 - выкл, 1 - вкл)
-
     $account = db::get_string("SELECT `DATE_VISIT`,`VERSION` FROM `USERS` WHERE `ID` = ? LIMIT 1", [$ID]);
-    $account_set = db::get_string("SELECT `AVATAR`,`AVATAR_PHONE` FROM `USERS_SETTINGS` WHERE `USER_ID` = ? LIMIT 1", [$ID]); 
+    $account_set = db::get_string("SELECT `AVATAR`,`AVATAR_PHONE` FROM `USERS_SETTINGS` WHERE `USER_ID` = ? LIMIT 1", [$ID]);
+    
+    // Проверяем, что запросы к базе данных вернули результат
+    if ($account === false || $account_set === false) {
+      return "<span style='display: inline-block; position: relative'><div class='avatar-o' style='background-color: #ccc; width: ".$size."px; height: ".$size."px;'><span><i class='fa fa-user'></i></span></div></span>";
+    }
+
     $photo = db::get_string("SELECT `SHIF`,`ID_DIR` FROM `PHOTOS` WHERE `ID` = ? LIMIT 1", [$account_set['AVATAR']]);
 
     $on = null;
     $border = ($border == 1 ? 'border: 7px #fff solid;' : null);
 
-    if ($online == 1 && $account['DATE_VISIT'] > (TM - config('ONLINE_TIME_USERS'))){
-      
+    if ($online == 1 && isset($account['DATE_VISIT']) && $account['DATE_VISIT'] > (TM - config('ONLINE_TIME_USERS'))) {
       $on = "<span class='avatar-online-".($account['VERSION'] == 'touch' ? 'touch' : 'web')."' style='z-index: 2'><span><i class='fa fa-".($account['VERSION'] == 'touch' ? 'mobile' : 'desktop')."'></i></span></span>";
-    
-    }  
+    }
     
     $size_text = $size / 2 - 2;
-    
-    //Пользователь удален или его не существует
+
+    // Пользователь удален или его не существует
     if (!isset($account['VERSION'])) {
-      
       return "<span style='display: inline-block; position: relative'><div class='avatar-o' style='".$border." background-color: ".$account_set['AVATAR_PHONE']."; font-size: ".$size_text."px; width: ".$size."px; height: ".$size."px;'><span><i class='fa fa-times'></i></span></div></span>";
-    
     }
-    
-    //Пользователь заблокирован
+
+    // Проверка, заблокирован ли пользователь
     if (db::get_column("SELECT COUNT(*) FROM `BAN_USER` WHERE `USER_ID` = ? AND `BAN` = ? LIMIT 1", [$ID, 1]) > 0) {
-      
       return "<span style='display: inline-block; position: relative'><div class='avatar-o' style='".$border." background-color: ".$account_set['AVATAR_PHONE']."; font-size: ".$size_text."px; width: ".$size."px; height: ".$size."px;'><span><i class='fa fa-ban'></i></span></div>".$on."</span>";
-    
     }
-    
-    //Пользователь установил аватар, выводим фото
-    if (is_file(ROOT.'/files/upload/photos/150x150/'.$photo['SHIF'].'.jpg')) {
-      
+
+    // Пользователь установил аватар, выводим фото
+    if ($photo && is_file(ROOT.'/files/upload/photos/150x150/'.$photo['SHIF'].'.jpg')) {
       return "<span style='display: inline-block; position: relative'><img class='avatar' style='".$border." width: ".$size."px; height: ".$size."px; position: relative; z-index: 1' src='/files/upload/photos/150x150/".$photo['SHIF'].".jpg'>".$on."</span>";
-    
     }
-    
-    //Пользователь не установил аватар, выводим базовый аватар
+
+    // Пользователь не установил аватар, выводим базовый аватар
     return "<span style='display: inline-block; position: relative'><div class='avatar-o' style='".$border." background-color: ".$account_set['AVATAR_PHONE']."; font-size: ".$size_text."px; width: ".$size."px; height: ".$size."px'><span>".mb_substr(user::login_mini($ID), 0, 1, 'utf-8')."</span></div>".$on."</span>";
-  
   }
-  
+
   /*
   -------------------
   Вывод иконки онлайн
