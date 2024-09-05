@@ -8,7 +8,11 @@ $c_f = db::get_string("SELECT * FROM `COUNTRY` WHERE `NAME` = ? LIMIT 1", [esc($
 ?>
 
 <div class='profile_info_list'>
-<?=icons('map-marker', 20, 'fa-fw')?> <span><?=lg('Страна')?>: <?=($settings['COUNTRY'] != null ? tabs($settings['COUNTRY']) : lg('не указана'))?> <?=($c_f['ID'] != null ? '<img src="/style/country/'.$c_f['ID'].'.png">' : null)?>
+    <?=icons('map-marker', 20, 'fa-fw')?> 
+    <span><?=lg('Страна')?>: 
+    <?=($settings['COUNTRY'] != null ? tabs($settings['COUNTRY']) : lg('не указана'))?> 
+    
+    <?=(!empty($c_f) && isset($c_f['ID']) ? '<img src="/style/country/'.$c_f['ID'].'.png">' : null)?>
 </div>
   
 <div class='profile_info_list'>
