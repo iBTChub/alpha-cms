@@ -136,25 +136,40 @@ if (!is_panel()){
   
     }
   
-    function b_icons($icons, $count = null, $size, $GHcolor = '#6E7B80', $GWcolor = '#6E7B80'){
-    
+    function b_icons($icons, $size, $count = null, $GHcolor = '#6E7B80', $GWcolor = '#6E7B80'){
+      // Проверка на параметры и установка значений
       if (str(PARAM_ICONS_COLOR) > 0 && str(PARAM_ICONS_GW_BACKGROUND) > 0 && str(PARAM_ICONS_GH_BACKGROUND) > 0 && str(PARAM_COUNT_BACKGROUND) > 0) {
-
-        $ccolor = PARAM_COUNT_BACKGROUND;
-        $tcolor = PARAM_ICONS_COLOR;
-        $color = 'linear-gradient(to top left, '.PARAM_ICONS_GH_BACKGROUND.', '.PARAM_ICONS_GW_BACKGROUND.')';
-    
-      }else{
-      
-        $color = 'linear-gradient(to top left, '.$GHcolor.', '.$GWcolor.')';
-        $tcolor = 'white';
-        $ccolor = null;
-    
+          $ccolor = PARAM_COUNT_BACKGROUND;
+          $tcolor = PARAM_ICONS_COLOR;
+          $color = 'linear-gradient(to top left, '.PARAM_ICONS_GH_BACKGROUND.', '.PARAM_ICONS_GW_BACKGROUND.')';
+      } else {
+          $color = 'linear-gradient(to top left, '.$GHcolor.', '.$GWcolor.')';
+          $tcolor = 'white';
+          $ccolor = null;
       }
-    
+      // Формирование HTML-вывода
       return "<div class='menu-container_icons' style='background: ".$color."; color: ".$tcolor."'><div style='".$ccolor."'>".$count."</div>".icons($icons, $size)."</div>";
-    
-    }
+  }
+
+
+
+
+
+
+
+
+    // function b_icons($icons, $count = null, $size, $GHcolor = '#6E7B80', $GWcolor = '#6E7B80'){
+    //   if (str(PARAM_ICONS_COLOR) > 0 && str(PARAM_ICONS_GW_BACKGROUND) > 0 && str(PARAM_ICONS_GH_BACKGROUND) > 0 && str(PARAM_COUNT_BACKGROUND) > 0) {
+    //     $ccolor = PARAM_COUNT_BACKGROUND;
+    //     $tcolor = PARAM_ICONS_COLOR;
+    //     $color = 'linear-gradient(to top left, '.PARAM_ICONS_GH_BACKGROUND.', '.PARAM_ICONS_GW_BACKGROUND.')';
+    //   }else{
+    //     $color = 'linear-gradient(to top left, '.$GHcolor.', '.$GWcolor.')';
+    //     $tcolor = 'white';
+    //     $ccolor = null;
+    //   }
+    //   return "<div class='menu-container_icons' style='background: ".$color."; color: ".$tcolor."'><div style='".$ccolor."'>".$count."</div>".icons($icons, $size)."</div>";
+    // }
     
   }
     
