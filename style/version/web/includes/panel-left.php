@@ -1,7 +1,5 @@
 <?php
 
-
-
 $date = date('Y');
 $host = tabs(HTTP_HOST);
 
@@ -39,34 +37,27 @@ if ($userId > 0) {
             <div class='mess-circle2'></div>
         </div>
     </div>
-
     <center style='margin-bottom: 10px'>
         <div class='list-tr-avatar panel-left-avatar'>
             <a href='/id{$userId}'>{$userAvatar}</a>
         </div>
-
         <div class='panel-left-login'>{$userLogin}</div>
-
         {$translate('Your account')}: <b>{$userBalance}</b> {$translate('UAH')}.
         <br />
         {$translate('Bonuses')}: <b>{$userBonuses}</b> {$translate('UAH')}.
-
         <div class='panel-left-menu-nav'>
             <div class='cabinet-menu'>
                 <a href='/account/cabinet/'>{$navGeneralMenuIcon('th-large', 19)}</a>
                 <span>{$translate('Cabinet')}</span>
             </div>
-
             <div class='cabinet-menu'>
                 <a href='/shopping/'>{$navGeneralMenuIcon('shopping-basket', 19)}</a>
                 <span>{$translate('Shop')}</span>
             </div>
-
             <div class='cabinet-menu'>
                 <a href='/account/settings/'>{$navGeneralMenuIcon('gear', 19)}</a>
                 <span>{$translate('Settings')}</span>
             </div>
-
             <div class='cabinet-menu'>
                 <a href='/exit/' ajax='no'>{$navGeneralMenuIcon('power-off', 19)}</a>
                 <span>{$translate('Exit')}</span>
@@ -81,19 +72,15 @@ HTML;
     ob_start();
     html::input('login', $translate('Login'), null, config('REG_STR'), null, 'form-control-100', 'text', null, 'user');
     html::input('password', $translate('Password'), null, 24, null, 'form-control-100', 'password', null, 'lock');
-    
     if (session('captcha') == 1 && !url_request_validate('/login') && !url_request_validate('/registration') && !url_request_validate('/password')) {
         html::captcha($translate('Enter numbers'));
     }
-    
     html::button('button', 'ok_aut', null, $translate('Login'));
     $formHtml = ob_get_clean();
-    
     $userContent = <<<HTML
     <div class='panel-left-menu pfm_name'>
       {$translate('Authorization')}
     </div>
-
     <div class='panel-left-menu' style='box-sizing: border-box; border-bottom: 1px #EBF2F7 solid'>
       <form method='post' action='/login/'>
         $formHtml
@@ -136,4 +123,3 @@ echo <<<HTML
   </div>
 </div>
 HTML;
-?>
