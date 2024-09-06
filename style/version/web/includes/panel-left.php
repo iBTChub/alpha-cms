@@ -46,7 +46,7 @@
   
 <?php if (access('administration_show', null, 1) == true) { ?>
 <a href='/admin/' ajax='no' class='panel-left-menu pfm_gray hover'>
-<?=m_icons('gear', 13, '#2F454F', 0)?> <?=lg('Панель управления')?> <b>(<?=config('ACMS_VERSION')?>)</b>
+<?=m_icons('gear', 13, '#2F454F', 0)?> <?=lg('Панель управления')?>
 </a> 
 <?php } ?>
   
