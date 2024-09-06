@@ -1,6 +1,6 @@
 <link rel="shortcut icon" href="/style/version/<?=version('DIR')?>/favicon/<?=version('FAVICON')?>?v=<?=front_hash()?>" />
 <link rel="stylesheet" href="/style/version/<?=version('DIR')?>/styles.css?v=<?=front_hash()?>" type="text/css" />
-<link rel="stylesheet" href="/style/font-awesome/font-awesome.css?v=<?=front_hash()?>">
+<link rel="stylesheet" href="/platform/libraries/font-awesome/font-awesome.css?v=<?=front_hash()?>">
   
 <?php
   

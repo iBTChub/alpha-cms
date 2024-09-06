@@ -7,7 +7,7 @@
   
 <link rel="shortcut icon" href="/panel/style/web/favicon.ico?v=<?=front_hash()?>" />
 <link rel="stylesheet" href="/panel/style/web/style.css?v=<?=front_hash()?>" type="text/css" />
-<link rel="stylesheet" href="/style/font-awesome/font-awesome.css?v=<?=front_hash()?>">
+<link rel="stylesheet" href="/platform/libraries/font-awesome/font-awesome.css?v=<?=front_hash()?>">
 <link rel="stylesheet" href="/style/css/css.css?v=<?=front_hash()?>"> 
 <link rel="stylesheet" href="/system/AJAX/AlphaPlayer/audio/style.css?v=<?=front_hash()?>">  
   

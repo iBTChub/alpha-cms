@@ -24,14 +24,14 @@ echo '<?xml version="1.0" encoding="utf-8"?>';
   
 <link rel="shortcut icon" href="/panel/style/touch/favicon.ico?v=<?=front_hash()?>" />
 <link rel="stylesheet" href="/panel/style/touch/style.css?v=<?=front_hash()?>" type="text/css" />
-<link rel="stylesheet" href="/style/font-awesome/font-awesome.css?v=<?=front_hash()?>">
+<link rel="stylesheet" href="/platform/libraries/font-awesome/font-awesome.css?v=<?=front_hash()?>">
 <link rel="stylesheet" href="/style/css/css.css?v=<?=front_hash()?>">
 <link rel="stylesheet" href="/system/AJAX/AlphaPlayer/audio/style.css?v=<?=front_hash()?>">  
 <link rel="stylesheet" href="/panel/style/touch/sidebar.css?v=<?=front_hash()?>" type="text/css" /> 
   
 </head>
 <body> 
-  
+
 <?php
 require_once (ROOT.'/system/AJAX/AlphaPlayer/php/admin-touch-player.php');
 ?>
